@@ -1,0 +1,21 @@
+{
+  "debugz": true,
+  "backup_path": "/home/tiki/Code",
+  "saves_path": "/home/tiki/MultiMC/instances/1.18/.minecraft/saves",
+  "world_name": "world",
+  "DIM0": [
+    ".0.0.",
+    ".0.-1.",
+    ".-1.0.",
+    ".-1.-1."
+  ],
+  "DIM1": [
+    ".2.0."
+  ],
+  "DIM-1": [
+    ".0.0.",
+    ".0.-1.",
+    ".-1.0.",
+    ".-1.-1."
+  ]
+}
