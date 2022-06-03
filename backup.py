@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #
 # Custom Minecraft Backup
-# Sean Hawthorne
+# Copyright (c) 2022 rocktiki
 #
 # Objective: Backup Select (TRIMMED) Regions of a minecraft world and the accompanying files 
 #
