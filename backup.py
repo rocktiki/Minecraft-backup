@@ -5,10 +5,14 @@
 #
 # Objective: Backup Select (TRIMMED) Regions of a minecraft world and the accompanying files 
 #
+# History:
+# 20220603 Version 1 complete
+#
 
 # imports
 import os
 import json
+import datetime
 
 # functions
 def getdircontents(dirname):
@@ -86,14 +90,27 @@ dim_1_files += [i for i in dim_1_poi if any(i for j in config['DIM-1'] if str(j)
 ### Test view dim0_files contents
 if config['debugz']: print(*dim_1_files, sep = "\n" )
 
-# get date
+# get backupnumber as a date stamp
+backupdate = datetime.datetime.now().replace(microsecond=0).isoformat()
+backupnumber = backupdate.replace(':','')
 
 # Write list of files to (date)-waybill.lst
-
-
-# Use backup-waybill.tmp to make (date)-waybill.md5
+waybill = base_files
+waybill += dim0_files
+waybill += dim1_files
+waybill += dim_1_files
 # Add backup backup.py/backup.json/(date)-waybill.tmp/(date)-waybill.md5 to (date)-waybill.tmp
+with open( backupnumber + '-waybill.lst', 'w') as file:
+    for item in waybill:
+        file.write("{}\n".format(item))
+# Use backup-waybill.tmp to make (date)-waybill.sha512sum
+
+	
 ### Quiesce Minecraft?
-# Use tar to make compressed archive using backup-waybill.tmp
+# Use tar to make compressed archive using (date)-waybill.tmp
+print("/usr/bin/tar cjvf " + backupnumber + "-backup.bz2 -C " + config['saves_path'] + " -T " + backupnumber + "-waybill.lst" )
+
+os.system("/usr/bin/tar cjvf " + backupnumber + "-backup.bz2 -C " + config['saves_path'] + " -T " + backupnumber + "-waybill.lst" )
+
 ### Engage Minecraft?
 ### Notification?
